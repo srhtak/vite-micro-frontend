@@ -18,8 +18,7 @@ This project is a microfrontend application built with Vite and React. It uses p
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/srhtak/vite-micro-frontend.git
    ```
 
 2. Install dependencies:
