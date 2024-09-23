@@ -11,8 +11,8 @@ This project is a microfrontend application built with Vite and React. It uses p
 
 ## Prerequisites
 
-- Node.js (version X.X.X or higher)
-- pnpm (version X.X.X or higher)
+- Node.js (version 20.11.1 or higher)
+- pnpm (version 9.7.1 or higher)
 
 ## Installation
 
