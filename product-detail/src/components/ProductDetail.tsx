@@ -33,7 +33,7 @@ const ProductDetail: React.FC = () => {
     <div
       style={{
         padding: "20px",
-        border: "3px dashed green",
+        border: "3px dashed crimson",
         margin: "10px",
         flex: 1,
       }}

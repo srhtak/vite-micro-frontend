@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
         justifyContent: "space-between",
         alignItems: "center",
         width: "100%",
-        border: "2px dashed red",
+        border: "2px dashed aqua",
         margin: 10,
         padding: 10,
       }}
