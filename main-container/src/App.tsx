@@ -1,4 +1,3 @@
-// main-container/src/App.tsx
 import React, { Suspense } from "react";
 import "./utils/eventBus";
 const Navbar = React.lazy(() => import("navbar/Navbar"));
