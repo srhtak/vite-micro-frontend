@@ -9,20 +9,15 @@ const Navbar: React.FC = () => {
   const [product, setProduct] = useState<Product[]>([]);
 
   useEffect(() => {
-    const handleAddToBasket = (data: Product) => {
-      setProduct((prevElements) => [...prevElements, data]);
+    const handleAddToBasket = (event: Event) => {
+      const newProduct = (event as CustomEvent).detail;
+      setProduct((prev) => [...prev, newProduct]);
     };
 
-    // Subscribe to add to basket event only once
-    const subscribe = (window as any).eventBus.subscribe(
-      "ADD_TO_BASKET",
-      (data: Product) => {
-        handleAddToBasket(data);
-      }
-    );
+    window.addEventListener("ADD_TO_BASKET", handleAddToBasket);
 
     return () => {
-      subscribe();
+      window.removeEventListener("ADD_TO_BASKET", handleAddToBasket);
     };
   }, []);
 
@@ -30,16 +25,16 @@ const Navbar: React.FC = () => {
     <div
       style={{
         color: "black",
-        lineHeight: 10,
         display: "flex",
         justifyContent: "space-between",
+        alignItems: "center",
         width: "100%",
         border: "2px dashed red",
         margin: 10,
         padding: 10,
       }}
     >
-      NAVBAR - Triggered by Product Detail
+      <h1 style={{ fontWeight: "bold", display: "block" }}>NAVBAR</h1>
       <div>Basket Count {product?.length}</div>
     </div>
   );

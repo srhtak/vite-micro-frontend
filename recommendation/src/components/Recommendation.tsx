@@ -6,13 +6,16 @@ interface RecommendedProduct {
 }
 
 const Recommendation: React.FC = () => {
-  const [recommendations, setRecommendations] = useState<RecommendedProduct[]>(
-    []
-  );
+  const [recommendations, setRecommendations] = useState<RecommendedProduct[]>([
+    { id: "1", name: "medium size complementary product" },
+    { id: "2", name: "medium size accessory" },
+    { id: "3", name: "medium size related product" },
+  ]);
 
   useEffect(() => {
-    const handleVariantChange = (variant: string) => {
-      // In a real scenario, you might fetch recommendations from an API
+    const handleVariantChange = (event: Event) => {
+      const variant = (event as CustomEvent).detail;
+
       const newRecommendations = [
         { id: "1", name: `${variant} size complementary product` },
         { id: "2", name: `${variant} size accessory` },
@@ -21,13 +24,10 @@ const Recommendation: React.FC = () => {
       setRecommendations(newRecommendations);
     };
 
-    const subscribe = (window as any).eventBus.subscribe(
-      "VARIANT_CHANGED",
-      handleVariantChange
-    );
+    window.addEventListener("VARIANT_CHANGED", handleVariantChange);
 
     return () => {
-      subscribe();
+      window.removeEventListener("VARIANT_CHANGED", handleVariantChange);
     };
   }, []);
 

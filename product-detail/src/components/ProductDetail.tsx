@@ -16,16 +16,17 @@ const ProductDetail: React.FC = () => {
     variant: "medium",
   });
 
-  useEffect(() => {
-    (window as any).eventBus.publish("VARIANT_CHANGED", product.variant);
-  }, [product.variant]);
-
   const changeVariant = (newVariant: "small" | "medium" | "large") => {
     setProduct((prev) => ({ ...prev, variant: newVariant }));
+    const event = new CustomEvent("VARIANT_CHANGED", { detail: newVariant });
+    window.dispatchEvent(event);
   };
 
   const handleAddToBasket = () => {
-    (window as any).eventBus.publish("ADD_TO_BASKET", product);
+    const event = new CustomEvent("ADD_TO_BASKET", {
+      detail: product,
+    });
+    window.dispatchEvent(event);
   };
 
   return (
