@@ -9,7 +9,7 @@ export default defineConfig({
     federation({
       name: "main-container",
       remotes: {
-        basket: "http://localhost:5001/assets/remoteEntry.js",
+        recommendation: "http://localhost:5001/assets/remoteEntry.js",
         navbar: "http://localhost:5002/assets/remoteEntry.js",
         productDetail: "http://localhost:5003/assets/remoteEntry.js",
       },

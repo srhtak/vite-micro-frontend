@@ -1,13 +1,11 @@
-import { useState } from "react";
 import "./App.css";
-import ProductDetail from "./ProductDetail";
+import ProductDetail from "./components/ProductDetail";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <ProductDetail />
+      <div>Product Detail App</div>
     </>
   );
 }

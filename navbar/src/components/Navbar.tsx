@@ -1,29 +1,46 @@
 import React, { useEffect, useState } from "react";
 
+interface Product {
+  name: string;
+  price: number;
+}
+
 const Navbar: React.FC = () => {
-  const [basketCount, setBasketCount] = useState<number>(0);
+  const [product, setProduct] = useState<Product[]>([]);
 
   useEffect(() => {
-    // Subscribe to 'clearSearch' event
-    (window as any).eventBus.subscribe("basketCount", (data: number) => {
-      setBasketCount(data);
-    });
+    const handleAddToBasket = (data: Product) => {
+      setProduct((prevElements) => [...prevElements, data]);
+    };
+
+    // Subscribe to add to basket event only once
+    const subscribe = (window as any).eventBus.subscribe(
+      "ADD_TO_BASKET",
+      (data: Product) => {
+        handleAddToBasket(data);
+      }
+    );
+
+    return () => {
+      subscribe();
+    };
   }, []);
 
   return (
     <div
       style={{
-        color: "white",
+        color: "black",
         lineHeight: 10,
         display: "flex",
         justifyContent: "space-between",
         width: "100%",
-        backgroundColor: "blue",
+        border: "2px dashed red",
+        margin: 10,
         padding: 10,
       }}
     >
-      NAVBAR
-      <div>Basket Count {basketCount}</div>
+      NAVBAR - Triggered by Product Detail
+      <div>Basket Count {product?.length}</div>
     </div>
   );
 };

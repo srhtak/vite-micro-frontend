@@ -9,7 +9,7 @@ export default defineConfig({
       name: "productDetail",
       filename: "remoteEntry.js",
       exposes: {
-        "./ProductDetail": "./src/ProductDetail",
+        "./ProductDetail": "./src/components/ProductDetail.tsx",
       },
       shared: ["react", "react-dom", "react-router-dom"],
     }),

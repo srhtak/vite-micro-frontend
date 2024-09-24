@@ -4,7 +4,7 @@ interface EventBus {
   events: {
     [key: string]: Function[];
   };
-  subscribe: (event: string, callback: Function) => void;
+  subscribe: (event: string, callback: Function) => () => void; // Unsubscribe fonksiyonu döndürmeli
   publish: (event: string, data?: any) => void;
 }
 
@@ -15,6 +15,11 @@ const eventBus: EventBus = {
       this.events[event] = [];
     }
     this.events[event].push(callback);
+
+    // Unsubscribe fonksiyonu döner
+    return () => {
+      this.events[event] = this.events[event].filter((cb) => cb !== callback);
+    };
   },
   publish(event: string, data?: any) {
     if (this.events[event]) {
